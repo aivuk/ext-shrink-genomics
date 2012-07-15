@@ -225,7 +225,6 @@ void mat_cov (double **data, int Ne, int tr, double **Covar, double **Corr, doub
    double correlation, covariance, lambda;
    double yt, xt;
    double syy = 0.0, sxy = 0.0, sxx = 0.0, ay = 0.0, ax = 0.0, epx = 0.0, epy = 0.0;
-   
 
    x = (double *) malloc (Ne*sizeof(double));
    y = (double *) malloc (Ne*sizeof(double));
@@ -321,8 +320,7 @@ void print_mat(double **Mat, char *outfile, int Ne, int tr)
    OutPut = fopen (outfile, "w");
 
    for (i = 0; i < Ne; i++){
-      for ( j = 0; j < tr-1; j++){
-         fprintf(OutPut, "%lf\t", Mat[i][j]);
+      for ( j = 0; j < tr-1; j++){ fprintf(OutPut, "%lf\t", Mat[i][j]);
       }
       fprintf(OutPut, "%lf\n", Mat[i][j]);
    }
