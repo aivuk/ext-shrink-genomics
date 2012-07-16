@@ -12,8 +12,8 @@ Options:
 from numpy import linalg, zeros, dot, diag_indices_from, array, var, genfromtxt
 from docopt import docopt
     
-def a_m(value, vector, mat_size):
-    mat = zeros((mat_size, mat_size))
+def a_m(value, vector):
+    mat = zeros((len(value), len(value)))
     mat[diag_indices_from(mat)] = value
     mat = dot(dot(vector, mat), vector.transpose())
     return mat
@@ -57,7 +57,7 @@ def noise_control(matrix, cutoff, output_filename, var_mat_filename):
     last_ev_index = last_big_eval_index(eig_vals, cutoff, var_mat_filename)
     last_ev_index = ask_number(last_ev_index)
     eig_vals[:-last_ev_index] = eig_vals[last_ev_index]
-    p = a_m(eig_vals, eig_vecs, matrix.shape[0])
+    p = a_m(eig_vals, eig_vecs)
     
     new_matrix = ''
     for i in range(num_evals):
